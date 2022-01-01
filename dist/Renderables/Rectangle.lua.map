@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/Renderables/Rectangle.ts"],"names":["this"],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAGA;MAAa;AAAb;AAgBI,mDAAY,MAAgB,OAAe;AACvC,IAAAA,YAAY;AACZ,IAAAA,aAAa;AACb,IAAAA,cAAc;AAHlB;AAOA;AAAA;AAGA;IACI;QAAwB,AAAAA;QAAW;QAAG;QAAG,AAAAA;QAAY,AAAAA;;AADzD","file":"Rectangle.lua","sourceRoot":""}

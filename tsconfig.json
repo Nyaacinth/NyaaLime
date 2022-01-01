@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "lib": ["ESNext"],
+        "target": "ESNext",
+        "rootDir": "src",
+        "outDir": "dist",
+        "strict": true,
+        "sourceMap": true,
+        "moduleResolution": "Node",
+        "noImplicitOverride": true,
+        "resolveJsonModule": true,
+        "experimentalDecorators": true,
+        "types": [
+            "love-typescript-definitions",
+            "lua-types/jit"
+        ]
+    },
+    "tstl": {
+        "luaTarget": "JIT",
+        "luaLibImport": "inline",
+        "buildMode": "library",
+        "sourceMapTraceback": true
+    }
+}
