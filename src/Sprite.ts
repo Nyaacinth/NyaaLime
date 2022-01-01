@@ -2,7 +2,7 @@ import {IRenderable} from "./Renderable"
 import {IScene} from "./Scene"
 
 /** Interface of a Sprite */
-export interface ISprite extends IScene {
+export interface ISprite {
     /** Drawable Object */
     graphic: IRenderable
 
@@ -12,7 +12,16 @@ export interface ISprite extends IScene {
     /** Position Y-axis */
     y: number
 
-    /** @description Calling this method should draw object at the right position, coordinates translation needs to be handled here */
+    /**
+     * Update Method, update the graphic
+     * @param dt Delta Time
+     */
+    update(dt: number): void
+
+    /**
+     * Draw Method, draw the graphic
+     * @description Calling this method should draw object at the right position, coordinates translation needs to be handled here
+     */
     draw(): void
 }
 
@@ -47,7 +56,7 @@ export abstract class SpriteBase implements ISprite, IScene {
         this.graphic.update(dt)
     }
 
-    /** Drawing Callback */
+    /** Drawing Method */
     draw() {
         love.graphics.push("transform")
         love.graphics.translate(this.x, this.y)
