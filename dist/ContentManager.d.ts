@@ -3,15 +3,13 @@ import { HintingMode } from "love.font";
 import { Font, Image, Shader } from "love.graphics";
 /** Content Manager Class */
 export declare class ContentManager {
-    /** Contents Base URL */
+    /** Content Base URL */
     base_url: string;
-    /** Get base URL */
-    getBaseURL(): string;
     /**
-     * Set base URL
-     * @param base_url Assets Base URL
+     * Content Manager Constructor
+     * @param base_url Content Base URL
      */
-    setBaseURL(base_url: string): void;
+    constructor(base_url: string);
     /**
      * Try to resolve filepath with given information, resolving failed will throw an error
      * @param domain Path Domain

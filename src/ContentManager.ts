@@ -4,19 +4,14 @@ import {Font, Image, Shader} from "love.graphics"
 
 /** Content Manager Class */
 export class ContentManager {
-    /** Contents Base URL */
-    base_url = "assets"
-
-    /** Get base URL */
-    getBaseURL() {
-        return this.base_url
-    }
+    /** Content Base URL */
+    base_url: string
 
     /**
-     * Set base URL
-     * @param base_url Assets Base URL
+     * Content Manager Constructor
+     * @param base_url Content Base URL
      */
-    setBaseURL(base_url: string) {
+    constructor(base_url: string) {
         this.base_url = base_url
     }
 

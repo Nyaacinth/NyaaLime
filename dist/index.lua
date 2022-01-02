@@ -1,6 +1,4 @@
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-require("lualib_bundle");
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["6"] = 1,["14"] = 2,["22"] = 3,["30"] = 5,["38"] = 6,["46"] = 7,["54"] = 8,["62"] = 9,["70"] = 10});
 local ____exports = {}
 do
     local ____export = require("Camera")

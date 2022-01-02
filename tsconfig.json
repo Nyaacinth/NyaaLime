@@ -17,7 +17,6 @@
     },
     "tstl": {
         "luaTarget": "JIT",
-        "buildMode": "library",
-        "sourceMapTraceback": true
+        "buildMode": "library"
     }
 }

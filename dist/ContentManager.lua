@@ -1,12 +1,10 @@
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["5"] = 6,["6"] = 6,["7"] = 6,["9"] = 8,["10"] = 42,["11"] = 42,["12"] = 42,["13"] = 42,["14"] = 42,["15"] = 42,["16"] = 42,["17"] = 42,["18"] = 42,["19"] = 42,["20"] = 42,["21"] = 42,["22"] = 42,["23"] = 42,["24"] = 42,["25"] = 42,["26"] = 42,["27"] = 42,["28"] = 42,["29"] = 42,["30"] = 42,["31"] = 42,["32"] = 42,["33"] = 42,["34"] = 42,["35"] = 42,["36"] = 42,["37"] = 42,["38"] = 42,["39"] = 42,["40"] = 42,["41"] = 42,["42"] = 51,["43"] = 69,["44"] = 69,["45"] = 69,["46"] = 69,["47"] = 69,["48"] = 69,["49"] = 69,["50"] = 69,["51"] = 69,["52"] = 69,["53"] = 72,["54"] = 87,["55"] = 90,["56"] = 107,["57"] = 107,["58"] = 107,["59"] = 107,["60"] = 107,["61"] = 107,["62"] = 107,["63"] = 107,["64"] = 110,["65"] = 6,["66"] = 11,["67"] = 12,["68"] = 11,["69"] = 19,["70"] = 20,["71"] = 19,["72"] = 31,["73"] = 32,["74"] = 33,["75"] = 34,["76"] = 35,["80"] = 38,["83"] = 31,["84"] = 59,["85"] = 60,["86"] = 61,["87"] = 62,["89"] = 64,["90"] = 64,["91"] = 64,["92"] = 64,["93"] = 65,["94"] = 59,["95"] = 78,["96"] = 79,["97"] = 80,["99"] = 82,["100"] = 83,["101"] = 78,["102"] = 97,["103"] = 97,["104"] = 97,["106"] = 98,["107"] = 99,["108"] = 100,["110"] = 102,["111"] = 102,["112"] = 102,["113"] = 102,["114"] = 102,["115"] = 103,["116"] = 97,["117"] = 118,["118"] = 119,["119"] = 120,["121"] = 122,["122"] = 123,["123"] = 118});
 local ____exports = {}
 ____exports.ContentManager = __TS__Class()
 local ContentManager = ____exports.ContentManager
 ContentManager.name = "ContentManager"
-function ContentManager.prototype.____constructor(self)
-    self.base_url = "assets"
+function ContentManager.prototype.____constructor(self, base_url)
     self.audio_formats = {
         "wav",
         "mp3",
@@ -62,11 +60,6 @@ function ContentManager.prototype.____constructor(self)
         "comp"
     }
     self.shader_cache = {}
-end
-function ContentManager.prototype.getBaseURL(self)
-    return self.base_url
-end
-function ContentManager.prototype.setBaseURL(self, base_url)
     self.base_url = base_url
 end
 function ContentManager.prototype.resolveAssetsPath(self, domain, filename, valid_formats, domain_displayname)

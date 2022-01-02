@@ -1,6 +1,5 @@
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["5"] = 4,["6"] = 4,["7"] = 4,["8"] = 16,["9"] = 17,["10"] = 18,["11"] = 16,["12"] = 22,["13"] = 22,["14"] = 25,["15"] = 26,["16"] = 27,["18"] = 29,["19"] = 30,["20"] = 31,["23"] = 25});
 local ____exports = {}
 ____exports.Polygon = __TS__Class()
 local Polygon = ____exports.Polygon
