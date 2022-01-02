@@ -7,5 +7,4 @@ export * from "./Scene";
 export * from "./SceneManager";
 export * from "./Signal";
 export * from "./Sprite";
-export * from "./Stage";
 export * from "./Timer";

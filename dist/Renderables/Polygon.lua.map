@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../src/Renderables/Polygon.ts"],"names":["this"],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAGA;MAAa;AAAb;AAYI,iDAAY,MAAgB;AACxB,IAAAA,YAAY;AACZ,IAAAA,cAAc;AAFlB;AAMA;AAAA;AAGA;OACQ,AAAAA,aAAa;QACb,sBAAsB,QAAQ,AAAAA;;AAE1B,0BAAY,sBAAsB,AAAAA;AACtC,kBAAS,mBAAY;YACjB,sBAAsB,QAAQ;;;AAN1C","file":"Polygon.lua","sourceRoot":""}

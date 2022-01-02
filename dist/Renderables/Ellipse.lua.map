@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../src/Renderables/Ellipse.ts"],"names":["this"],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAGA;MAAa;AAAb;AAgBI,iDAAY,MAAgB,OAAe;AACvC,IAAAA,YAAY;AACZ,IAAAA,aAAa;AACb,IAAAA,cAAc;AAHlB;AAOA;AAAA;AAGA;IACI;QAAsB,AAAAA;QAAW;QAAG;QAAG,AAAAA;QAAY,AAAAA;;AADvD","file":"Ellipse.lua","sourceRoot":""}

@@ -1,54 +1,6 @@
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
--- Lua Library inline imports
-function __TS__Class(self)
-    local c = {prototype = {}}
-    c.prototype.__index = c.prototype
-    c.prototype.constructor = c
-    return c
-end
-
-function __TS__SourceMapTraceBack(fileName, sourceMap)
-    _G.__TS__sourcemap = _G.__TS__sourcemap or ({})
-    _G.__TS__sourcemap[fileName] = sourceMap
-    if _G.__TS__originalTraceback == nil then
-        _G.__TS__originalTraceback = debug.traceback
-        debug.traceback = function(thread, message, level)
-            local trace
-            if thread == nil and message == nil and level == nil then
-                trace = _G.__TS__originalTraceback()
-            else
-                trace = _G.__TS__originalTraceback(thread, message, level)
-            end
-            if type(trace) ~= "string" then
-                return trace
-            end
-            local function replacer(____, file, srcFile, line)
-                local fileSourceMap = _G.__TS__sourcemap[file]
-                if fileSourceMap and fileSourceMap[line] then
-                    local data = fileSourceMap[line]
-                    if type(data) == "number" then
-                        return (srcFile .. ":") .. tostring(data)
-                    end
-                    return (tostring(data.file) .. ":") .. tostring(data.line)
-                end
-                return (file .. ":") .. line
-            end
-            local result = string.gsub(
-                trace,
-                "(%S+)%.lua:(%d+)",
-                function(file, line) return replacer(_G, file .. ".lua", file .. ".ts", line) end
-            )
-            result = string.gsub(
-                result,
-                "(%[string \"[^\"]+\"%]):(%d+)",
-                function(file, line) return replacer(_G, file, "unknown", line) end
-            )
-            return result
-        end
-    end
-end
-
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["53"] = 4,["54"] = 4,["55"] = 4,["57"] = 6,["58"] = 9,["59"] = 12,["60"] = 15,["61"] = 18,["62"] = 21,["63"] = 4,["64"] = 40,["65"] = 40,["66"] = 40,["68"] = 41,["69"] = 42,["70"] = 43,["72"] = 45,["73"] = 45,["75"] = 46,["77"] = 48,["78"] = 48,["80"] = 50,["81"] = 51,["82"] = 52,["83"] = 54,["84"] = 40,["85"] = 63,["86"] = 63,["87"] = 63,["89"] = 64,["90"] = 65,["93"] = 66,["94"] = 63,["95"] = 74,["96"] = 75,["99"] = 76,["100"] = 77,["101"] = 78,["102"] = 80,["103"] = 82,["104"] = 83,["105"] = 84,["106"] = 86,["107"] = 87,["108"] = 88,["110"] = 91,["111"] = 92,["113"] = 74,["114"] = 97,["115"] = 98,["118"] = 99,["119"] = 100,["120"] = 101,["121"] = 97,["122"] = 105,["123"] = 106,["126"] = 107,["127"] = 105,["128"] = 111,["129"] = 112,["130"] = 113,["132"] = 115,["133"] = 111,["134"] = 119,["135"] = 120,["136"] = 121,["138"] = 123,["139"] = 119,["140"] = 127,["141"] = 128,["142"] = 129,["144"] = 131,["145"] = 127,["146"] = 139,["147"] = 140,["148"] = 141,["150"] = 143,["151"] = 144,["152"] = 139,["153"] = 152,["154"] = 153,["155"] = 154,["157"] = 156,["158"] = 157,["159"] = 152});
+require("lualib_bundle");
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["5"] = 4,["6"] = 4,["7"] = 4,["9"] = 6,["10"] = 9,["11"] = 12,["12"] = 15,["13"] = 18,["14"] = 21,["15"] = 4,["16"] = 40,["17"] = 40,["18"] = 40,["20"] = 41,["21"] = 42,["22"] = 43,["24"] = 45,["25"] = 45,["27"] = 46,["29"] = 48,["30"] = 48,["32"] = 50,["33"] = 51,["34"] = 52,["35"] = 54,["36"] = 40,["37"] = 63,["38"] = 63,["39"] = 63,["41"] = 64,["42"] = 65,["45"] = 66,["46"] = 63,["47"] = 74,["48"] = 75,["51"] = 76,["52"] = 77,["53"] = 78,["54"] = 80,["55"] = 82,["56"] = 83,["57"] = 84,["58"] = 86,["59"] = 87,["60"] = 88,["62"] = 91,["63"] = 92,["65"] = 74,["66"] = 97,["67"] = 98,["70"] = 99,["71"] = 100,["72"] = 101,["73"] = 97,["74"] = 105,["75"] = 106,["78"] = 107,["79"] = 105,["80"] = 111,["81"] = 112,["82"] = 113,["84"] = 115,["85"] = 111,["86"] = 119,["87"] = 120,["88"] = 121,["90"] = 123,["91"] = 119,["92"] = 127,["93"] = 128,["94"] = 129,["96"] = 131,["97"] = 127,["98"] = 139,["99"] = 140,["100"] = 141,["102"] = 143,["103"] = 144,["104"] = 139,["105"] = 152,["106"] = 153,["107"] = 154,["109"] = 156,["110"] = 157,["111"] = 152});
 local ____exports = {}
 ____exports.DisplayManager = __TS__Class()
 local DisplayManager = ____exports.DisplayManager

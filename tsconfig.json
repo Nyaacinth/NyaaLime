@@ -6,7 +6,6 @@
         "rootDir": "src",
         "outDir": "dist",
         "strict": true,
-        "sourceMap": true,
         "moduleResolution": "Node",
         "noImplicitOverride": true,
         "resolveJsonModule": true,
@@ -18,7 +17,6 @@
     },
     "tstl": {
         "luaTarget": "JIT",
-        "luaLibImport": "inline",
         "buildMode": "library",
         "sourceMapTraceback": true
     }
