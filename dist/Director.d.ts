@@ -1,9 +1,10 @@
 /// <reference types="typescript-to-lua/language-extensions" />
 import { DisplayFlags } from "love.graphics";
-/** Display Manager Class */
-export declare class DisplayManager {
-    /** Enabled Tag */
-    protected enabled: boolean;
+import { IScene } from "./Scene";
+/** Director Class */
+export declare class Director {
+    /** Scenes Stack */
+    protected scenes: IScene[];
     /** Display Width */
     protected display_width: number;
     /** Display Height */
@@ -15,14 +16,21 @@ export declare class DisplayManager {
     /** Display Offset Y-axis */
     protected offset_y: number;
     /**
-     * Set screen, display and enable manager
+     * Director Constructor
+     * @param width Screen Width
+     * @param height Screen Height
+     * @param flags Screen Flags
+     */
+    constructor(width: number, height: number, flags: DisplayFlags);
+    /**
+     * Set screen and display
      * @param width Canvas and Window Width
      * @param height Canvas and Window Height
      * @param flags Diaplay Flags
      */
     setScreen(width: number, height: number, flags?: DisplayFlags): void;
     /**
-     * Set screen, display and enable manager
+     * Set screen and display
      * @param width Canvas Width
      * @param height Canvas Height
      * @param window_width Window Width
@@ -43,16 +51,12 @@ export declare class DisplayManager {
      * @param height Window Height
      */
     handleResize(width: number, height: number): void;
-    /** Attach to managed display */
-    attach(): void;
-    /** Detach from managed display */
-    detach(): void;
     /** Get width of current display */
-    getWidth(): number;
+    getScreenWidth(): number;
     /** Get height of current display */
-    getHeight(): number;
+    getScreenHeight(): number;
     /** Get width and height of current display */
-    getDimensions(): LuaMultiReturn<[width: number, height: number]>;
+    getScreenDimensions(): LuaMultiReturn<[width: number, height: number]>;
     /**
      * Convert the position from screen coordinates to native coordinates
      * @param x Position X-axis
@@ -65,4 +69,30 @@ export declare class DisplayManager {
      * @param y Position Y-axis
      */
     toScreenCoordinates(x: number, y: number): LuaMultiReturn<[x: number, y: number]>;
+    /** Get current scene, might be undefined if there's nothing on stack */
+    getCurrentScene(): IScene | undefined;
+    /**
+     * Switch to a scene and call `<from>.leave()`, `<to>.enter()`
+     * @param to Target scene
+     * @param varargs Arguments pass to to.enter()
+     */
+    switch(to: IScene, ...varargs: unknown[]): void;
+    /**
+     * Push scene to the top of states stack and call `<from>.pause()`, `<to>.enter()`
+     * @param to Target scene
+     * @param varargs Arguments pass to to.enter()
+     */
+    push(to: IScene, ...varargs: unknown[]): void;
+    /**
+     * Remove current scene from the states stack and call `<from>.leave()`, `<to>.resume()`
+     * @param varargs Arguments pass to to.resume()
+     */
+    pop(...varargs: unknown[]): void;
+    /**
+     * Update Method
+     * @param dt Delta Time
+     */
+    update(dt: number): void;
+    /** Draw Method */
+    draw(): void;
 }

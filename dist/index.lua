@@ -17,14 +17,6 @@ do
     end
 end
 do
-    local ____export = require("DisplayManager")
-    for ____exportKey, ____exportValue in pairs(____export) do
-        if ____exportKey ~= "default" then
-            ____exports[____exportKey] = ____exportValue
-        end
-    end
-end
-do
     local ____export = require("Renderables.index")
     for ____exportKey, ____exportValue in pairs(____export) do
         if ____exportKey ~= "default" then
@@ -41,7 +33,7 @@ do
     end
 end
 do
-    local ____export = require("SceneManager")
+    local ____export = require("Director")
     for ____exportKey, ____exportValue in pairs(____export) do
         if ____exportKey ~= "default" then
             ____exports[____exportKey] = ____exportValue

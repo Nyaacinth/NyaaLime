@@ -1,9 +1,10 @@
 import {DisplayFlags} from "love.graphics"
+import {IScene} from "./Scene"
 
-/** Display Manager Class */
-export class DisplayManager {
-    /** Enabled Tag */
-    protected enabled = false
+/** Director Class */
+export class Director {
+    /** Scenes Stack */
+    protected scenes: IScene[] = []
 
     /** Display Width */
     protected display_width = -1
@@ -21,14 +22,39 @@ export class DisplayManager {
     protected offset_y = -1
 
     /**
-     * Set screen, display and enable manager
+     * Director Constructor
+     * @param width Screen Width
+     * @param height Screen Height
+     * @param flags Screen Flags
+     */
+    constructor(width: number, height: number, flags: DisplayFlags) {
+        this.setScreen(width, height, flags)
+        let prev_update = love.update ?? function() {}
+        love.update = (dt: number) => {
+            prev_update(dt)
+            this.update(dt)
+        }
+        let prev_draw = love.draw ?? function() {}
+        love.draw = () => {
+            prev_draw()
+            this.draw()
+        }
+        let prev_resize = love.resize ?? function() {}
+        love.resize = (w: number, h: number) => {
+            prev_resize(w, h)
+            this.handleResize(w, h)
+        }
+    }
+
+    /**
+     * Set screen and display
      * @param width Canvas and Window Width
      * @param height Canvas and Window Height
      * @param flags Diaplay Flags
      */
     setScreen(width: number, height: number, flags?: DisplayFlags): void
     /**
-     * Set screen, display and enable manager
+     * Set screen and display
      * @param width Canvas Width
      * @param height Canvas Height
      * @param window_width Window Width
@@ -49,7 +75,6 @@ export class DisplayManager {
 
         this.display_width = width
         this.display_height = height
-        this.enabled = true
 
         this.setWindow(window_width, window_height, flags)
     }
@@ -62,7 +87,6 @@ export class DisplayManager {
      */
     setWindow(width: number, height: number, flags: DisplayFlags = {}) {
         love.window.setMode(width, height, flags)
-        if (!this.enabled) return
         this.handleResize(width, height)
     }
 
@@ -72,7 +96,6 @@ export class DisplayManager {
      * @param height Window Height
      */
     handleResize(width: number, height: number) {
-        if (!this.enabled) return
         this.scale = width / this.display_width
         let window_aspectratio = width / height
         let display_aspectratio = this.display_width / this.display_height
@@ -93,41 +116,18 @@ export class DisplayManager {
         }
     }
 
-    /** Attach to managed display */
-    attach() {
-        if (!this.enabled) return
-        love.graphics.push("all")
-        love.graphics.translate(this.offset_x, this.offset_y)
-        love.graphics.scale(this.scale)
-    }
-
-    /** Detach from managed display */
-    detach() {
-        if (!this.enabled) return
-        love.graphics.pop()
-    }
-
     /** Get width of current display */
-    getWidth() {
-        if (!this.enabled) {
-            return love.graphics.getWidth()
-        }
+    getScreenWidth() {
         return this.display_width
     }
 
     /** Get height of current display */
-    getHeight() {
-        if (!this.enabled) {
-            return love.graphics.getHeight()
-        }
+    getScreenHeight() {
         return this.display_height
     }
 
     /** Get width and height of current display */
-    getDimensions(): LuaMultiReturn<[width: number, height: number]> {
-        if (!this.enabled) {
-            return love.graphics.getDimensions()
-        }
+    getScreenDimensions(): LuaMultiReturn<[width: number, height: number]> {
         return $multi(this.display_width, this.display_height)
     }
 
@@ -137,9 +137,6 @@ export class DisplayManager {
      * @param y Position Y-axis
      */
     fromScreenCoordinates(x: number, y: number): LuaMultiReturn<[x: number, y: number]> {
-        if (!this.enabled) {
-            return $multi(x, y)
-        }
         let scale = this.scale
         return $multi(x * scale + this.offset_x, y * scale + this.offset_y)
     }
@@ -150,10 +147,78 @@ export class DisplayManager {
      * @param y Position Y-axis
      */
     toScreenCoordinates(x: number, y: number): LuaMultiReturn<[x: number, y: number]> {
-        if (!this.enabled) {
-            return $multi(x, y)
-        }
         let scale = this.scale
         return $multi((x - this.offset_x) / scale, (y - this.offset_y) / scale)
+    }
+
+    /** Get current scene, might be undefined if there's nothing on stack */
+    getCurrentScene(): IScene | undefined {
+        return this.scenes[this.scenes.length - 1]
+    }
+
+    /**
+     * Switch to a scene and call `<from>.leave()`, `<to>.enter()`
+     * @param to Target scene
+     * @param varargs Arguments pass to to.enter()
+     */
+    switch(to: IScene, ...varargs: unknown[]) {
+        let from = this.getCurrentScene()
+        if (!to.initialized) {
+            to.init?.()
+            to.initialized = true
+        }
+        if (from) {
+            from.leave?.()
+        }
+        to.enter?.(from, ...varargs)
+        this.scenes.pop()
+        this.scenes.push(to)
+    }
+
+    /**
+     * Push scene to the top of states stack and call `<from>.pause()`, `<to>.enter()`
+     * @param to Target scene
+     * @param varargs Arguments pass to to.enter()
+     */
+    push(to: IScene, ...varargs: unknown[]) {
+        let from = this.getCurrentScene()
+        if (from) {
+            from.pause?.()
+        }
+        to.enter?.(this.getCurrentScene(), ...varargs)
+        this.scenes.push(to)
+    }
+
+    /**
+     * Remove current scene from the states stack and call `<from>.leave()`, `<to>.resume()`
+     * @param varargs Arguments pass to to.resume()
+     */
+    pop(...varargs: unknown[]) {
+        let from = this.getCurrentScene()
+        if (from) {
+            from.leave?.()
+        }
+        this.scenes.pop()
+        let to = this.getCurrentScene()
+        if (to) {
+            to.resume?.(from, ...varargs)
+        }
+    }
+
+    /**
+     * Update Method
+     * @param dt Delta Time
+     */
+    update(dt: number) {
+        this.getCurrentScene()?.update(dt)
+    }
+
+    /** Draw Method */
+    draw() {
+        love.graphics.push("all")
+        love.graphics.translate(this.offset_x, this.offset_y)
+        love.graphics.scale(this.scale)
+        this.getCurrentScene()?.draw()
+        love.graphics.pop()
     }
 }
