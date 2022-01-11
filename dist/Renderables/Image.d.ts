@@ -1,5 +1,6 @@
 import { ImageData } from "love.image";
 import { IRenderable } from "../Renderable";
+/** Image Class */
 export declare class Image implements IRenderable {
     /** Image Object */
     image_drawable: import("love.graphics").Image;

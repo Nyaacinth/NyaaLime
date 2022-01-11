@@ -1,5 +1,6 @@
 import { DrawMode } from "love.graphics";
 import { IRenderable } from "../Renderable";
+/** Ellipse Class */
 export declare class Ellipse implements IRenderable {
     /** Drawing Mode */
     mode: DrawMode;
