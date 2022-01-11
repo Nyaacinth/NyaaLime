@@ -31,7 +31,8 @@ function Director.prototype.____constructor(self, width, height, flags)
         self:handleResize(w, h)
     end
     for handler_name in pairs(love.handlers) do
-        local prev_handler = love[handler_name]
+        local prev_handler = love[handler_name] or (function()
+        end)
         love[handler_name] = function(____, ...)
             prev_handler(...)
             local ____table_getCurrentScene_result_signal_emit_result_0 = self:getCurrentScene()
