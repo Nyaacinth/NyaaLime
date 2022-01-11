@@ -46,7 +46,7 @@ export class Director {
         }
         for (let handler_name in love.handlers) {
             let prev_handler = (love as any)[handler_name] as (this: void, ...varargs: any[]) => any | undefined
-            ;(love as any)[handler_name] = (varargs: any[]) => {
+            ;(love as any)[handler_name] = (...varargs: any[]) => {
                 prev_handler(...varargs)
                 this.getCurrentScene()?.signal.emit(handler_name, ...varargs)
             }

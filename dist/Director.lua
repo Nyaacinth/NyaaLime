@@ -32,14 +32,11 @@ function Director.prototype.____constructor(self, width, height, flags)
     end
     for handler_name in pairs(love.handlers) do
         local prev_handler = love[handler_name]
-        love[handler_name] = function(____, varargs)
-            prev_handler(unpack(varargs))
+        love[handler_name] = function(____, ...)
+            prev_handler(...)
             local ____table_getCurrentScene_result_signal_emit_result_0 = self:getCurrentScene()
             if ____table_getCurrentScene_result_signal_emit_result_0 ~= nil then
-                ____table_getCurrentScene_result_signal_emit_result_0 = ____table_getCurrentScene_result_signal_emit_result_0.signal:emit(
-                    handler_name,
-                    unpack(varargs)
-                )
+                ____table_getCurrentScene_result_signal_emit_result_0 = ____table_getCurrentScene_result_signal_emit_result_0.signal:emit(handler_name, ...)
             end
             local ____ = ____table_getCurrentScene_result_signal_emit_result_0
         end
