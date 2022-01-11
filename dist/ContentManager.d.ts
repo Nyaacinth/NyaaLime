@@ -1,10 +1,11 @@
 import { Source, SourceType } from "love.audio";
 import { HintingMode } from "love.font";
-import { Font, Image, Shader } from "love.graphics";
+import { Font, Shader } from "love.graphics";
+import { ImageData } from "love.image";
 /** Content Manager Class */
 export declare class ContentManager {
     /** Content Base URL */
-    base_url: string;
+    protected base_url: string;
     /**
      * Content Manager Constructor
      * @param base_url Content Base URL
@@ -20,7 +21,7 @@ export declare class ContentManager {
      */
     resolveAssetsPath(domain: string, filename: string, valid_formats: string[], domain_displayname?: string): string;
     /** Valid Audio Formats */
-    audio_formats: string[];
+    protected audio_formats: string[];
     /** Audio Cache Field */
     protected audio_cache: {
         [filaname_and_type: string]: Source;
@@ -33,18 +34,18 @@ export declare class ContentManager {
      */
     getSource(filename: string, type: SourceType): Source;
     /** Valid Image Formats */
-    image_formats: string[];
+    protected image_formats: string[];
     /** Image Cache Field */
-    protected image_cache: {
-        [filename: string]: Image;
+    protected image_data_cache: {
+        [filename: string]: ImageData;
     };
     /**
-     * Get the image with given filename
+     * Get the image data with given filename
      * @param filename Filename to search
      */
-    getImage(filename: string): Image;
+    getImageData(filename: string): ImageData;
     /** Valid Font Formats */
-    font_formats: string[];
+    protected font_formats: string[];
     /** Font Cache Field */
     protected font_cache: {
         [filename_and_size_hint: string]: Font;
@@ -56,7 +57,7 @@ export declare class ContentManager {
      */
     getFont(filename: string, size: number, hint?: HintingMode): Font;
     /** Valid Shader Formats */
-    shader_formats: string[];
+    protected shader_formats: string[];
     /** Shader Cache Field */
     protected shader_cache: {
         [filename: string]: Shader<any>;

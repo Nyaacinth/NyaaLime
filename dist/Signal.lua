@@ -9,6 +9,15 @@ function Signal.prototype.____constructor(self)
 end
 function Signal.prototype.emit(self, signal_name, ...)
     local varargs = {...}
+    if self.connected_signals["*"] then
+        __TS__ArrayForEach(
+            self.connected_signals["*"],
+            function(____, callback) return callback(
+                nil,
+                unpack(varargs)
+            ) end
+        )
+    end
     if self.connected_signals[signal_name] then
         __TS__ArrayForEach(
             self.connected_signals[signal_name],

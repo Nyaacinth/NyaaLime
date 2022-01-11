@@ -1,11 +1,14 @@
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
+local ____Signal = require("Signal")
+local Signal = ____Signal.Signal
 ____exports.SceneBase = __TS__Class()
 local SceneBase = ____exports.SceneBase
 SceneBase.name = "SceneBase"
 function SceneBase.prototype.____constructor(self)
     self.children = {}
+    self.signal = __TS__New(Signal)
 end
 function SceneBase.prototype.addChild(self, child)
     if __TS__ArrayIncludes(self.children, child) then

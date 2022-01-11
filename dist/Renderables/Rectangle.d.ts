@@ -7,13 +7,15 @@ export declare class Rectangle implements IRenderable {
     width: number;
     /** Drawing Height */
     height: number;
+    /** Round corner */
+    roundness: number;
     /**
      * Rectangle Constructor
      * @param mode Drawing Mode
      * @param width Drawing Width
      * @param height Drawing Height
      */
-    constructor(mode: DrawMode, width: number, height: number);
+    constructor(mode: DrawMode, width: number, height: number, roundness?: number);
     /** Update Method, no functional */
     update(): void;
     /** Draw Method, draw a rectangle */

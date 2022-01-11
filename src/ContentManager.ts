@@ -1,11 +1,12 @@
 import {Source, SourceType} from "love.audio"
 import {HintingMode} from "love.font"
-import {Font, Image, Shader} from "love.graphics"
+import {Font, Shader} from "love.graphics"
+import {ImageData} from "love.image"
 
 /** Content Manager Class */
 export class ContentManager {
     /** Content Base URL */
-    base_url: string
+    protected base_url: string
 
     /**
      * Content Manager Constructor
@@ -34,7 +35,7 @@ export class ContentManager {
     }
 
     /** Valid Audio Formats */
-    audio_formats = [
+    protected audio_formats = [
         "wav", "mp3", "ogg", "oga", "ogv", "699", "amf",
         "ams", "dbm", "dmf", "dsm", "far", "it", "j2b",
         "mdl", "med", "mod", "mt2", "mtm", "okt", "psm",
@@ -61,25 +62,25 @@ export class ContentManager {
     }
 
     /** Valid Image Formats */
-    image_formats = ["jpg", "jpeg", "png", "bmp", "tga", "hdr", "pic", "exr"]
+    protected image_formats = ["jpg", "jpeg", "png", "bmp", "tga", "hdr", "pic", "exr"]
 
     /** Image Cache Field */
-    protected image_cache: {[filename: string]: Image} = {}
+    protected image_data_cache: {[filename: string]: ImageData} = {}
 
     /**
-     * Get the image with given filename
+     * Get the image data with given filename
      * @param filename Filename to search
      */
-    getImage(filename: string) {
-        if (this.image_cache[filename]) {
-            return this.image_cache[filename]
+    getImageData(filename: string) {
+        if (this.image_data_cache[filename]) {
+            return this.image_data_cache[filename]
         }
-        this.image_cache[filename] = love.graphics.newImage(this.resolveAssetsPath("images", filename, this.image_formats, "image"))
-        return this.image_cache[filename]
+        this.image_data_cache[filename] = love.image.newImageData(this.resolveAssetsPath("images", filename, this.image_formats, "image"))
+        return this.image_data_cache[filename]
     }
 
     /** Valid Font Formats */
-    font_formats = ["ttf", "otf", "ttc"]
+    protected font_formats = ["ttf", "otf", "ttc"]
 
     /** Font Cache Field */
     protected font_cache: {[filename_and_size_hint: string]: Font} = {}
@@ -99,7 +100,7 @@ export class ContentManager {
     }
 
     /** Valid Shader Formats */
-    shader_formats = ["vert", "tesc", "tese", "geom", "frag", "comp"]
+    protected shader_formats = ["vert", "tesc", "tese", "geom", "frag", "comp"]
 
     /** Shader Cache Field */
     protected shader_cache: {[filename: string]: Shader<any>} = {}

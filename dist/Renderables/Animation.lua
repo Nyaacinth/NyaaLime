@@ -8,7 +8,7 @@ function Animation.prototype.____constructor(self, image, frame_width, frame_hei
     self.frames = {}
     self.frame_index = 0
     self.duration = 0
-    self.image = image
+    self.image_object = image
     self.total_duration = duration
     local image_width = image:getWidth()
     local image_height = image:getHeight()
@@ -49,6 +49,6 @@ function Animation.prototype.update(self, dt)
     end
 end
 function Animation.prototype.draw(self)
-    love.graphics.draw(self.image, self.frames[self.frame_index + 1])
+    love.graphics.draw(self.image_object, self.frames[self.frame_index + 1])
 end
 return ____exports

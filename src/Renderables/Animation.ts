@@ -4,7 +4,7 @@ import {IRenderable} from "../Renderable"
 /** Animation Class */
 export class Animation implements IRenderable {
     /** Image Object */
-    image: Image
+    image_object: Image
 
     /** Animation Frames */
     frames: Quad[] = []
@@ -26,7 +26,7 @@ export class Animation implements IRenderable {
      * @param duration Animation Duration
      */
     constructor(image: Image, frame_width: number, frame_height: number, duration: number) {
-        this.image = image
+        this.image_object = image
         this.total_duration = duration
         let image_width = image.getWidth(),
             image_height = image.getHeight()
@@ -56,6 +56,6 @@ export class Animation implements IRenderable {
 
     /** Draw Method, draw the animation */
     draw() {
-        love.graphics.draw(this.image, this.frames[this.frame_index])
+        love.graphics.draw(this.image_object, this.frames[this.frame_index])
     }
 }

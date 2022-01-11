@@ -48,7 +48,7 @@ function ContentManager.prototype.____constructor(self, base_url)
         "pic",
         "exr"
     }
-    self.image_cache = {}
+    self.image_data_cache = {}
     self.font_formats = {"ttf", "otf", "ttc"}
     self.font_cache = {}
     self.shader_formats = {
@@ -85,12 +85,12 @@ function ContentManager.prototype.getSource(self, filename, ____type)
     )
     return self.audio_cache[filaname_and_type]
 end
-function ContentManager.prototype.getImage(self, filename)
-    if self.image_cache[filename] then
-        return self.image_cache[filename]
+function ContentManager.prototype.getImageData(self, filename)
+    if self.image_data_cache[filename] then
+        return self.image_data_cache[filename]
     end
-    self.image_cache[filename] = love.graphics.newImage(self:resolveAssetsPath("images", filename, self.image_formats, "image"))
-    return self.image_cache[filename]
+    self.image_data_cache[filename] = love.image.newImageData(self:resolveAssetsPath("images", filename, self.image_formats, "image"))
+    return self.image_data_cache[filename]
 end
 function ContentManager.prototype.getFont(self, filename, size, hint)
     if hint == nil then

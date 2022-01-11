@@ -8,6 +8,9 @@ export class Signal {
      * @param varargs Optional Arguments
      */
     emit(signal_name: string, ...varargs: any[]) {
+        if (this.connected_signals["*"]) {
+            this.connected_signals["*"].forEach((callback) => callback(...varargs))
+        }
         if (this.connected_signals[signal_name]) {
             this.connected_signals[signal_name].forEach((callback) => callback(...varargs))
         }

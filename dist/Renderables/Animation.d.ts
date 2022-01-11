@@ -3,7 +3,7 @@ import { IRenderable } from "../Renderable";
 /** Animation Class */
 export declare class Animation implements IRenderable {
     /** Image Object */
-    image: Image;
+    image_object: Image;
     /** Animation Frames */
     frames: Quad[];
     /** Frame Index */

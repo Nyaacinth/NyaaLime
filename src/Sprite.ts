@@ -1,8 +1,7 @@
 import {IRenderable} from "./Renderable"
-import {IScene} from "./Scene"
 
 /** Interface of a Sprite */
-export interface ISprite {
+export interface ISprite extends IRenderable {
     /** Drawable Object */
     graphic: IRenderable
 
@@ -11,22 +10,10 @@ export interface ISprite {
 
     /** Position Y-axis */
     y: number
-
-    /**
-     * Update Method, update the graphic
-     * @param dt Delta Time
-     */
-    update(dt: number): void
-
-    /**
-     * Draw Method, draw the graphic
-     * @description Calling this method should draw object at the right position, coordinates translation needs to be handled here
-     */
-    draw(): void
 }
 
 /** Sprite Base Class */
-export abstract class SpriteBase implements ISprite, IScene {
+export abstract class SpriteBase implements ISprite {
     /** Drawable Object */
     graphic: IRenderable
 
