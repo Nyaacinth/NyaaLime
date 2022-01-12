@@ -33,7 +33,8 @@ function Menu.prototype.update(self)
             end
         end
         self.handled = true
-    else
+    end
+    if not self.input:isDown() then
         self.handled = false
     end
 end

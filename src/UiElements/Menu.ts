@@ -51,7 +51,8 @@ export class Menu implements IRenderable {
                 }
             }
             this.handled = true
-        } else {
+        }
+        if (!this.input.isDown()) {
             this.handled = false
         }
     }
