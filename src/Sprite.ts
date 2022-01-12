@@ -3,25 +3,37 @@ import {IRenderable} from "./Renderable"
 /** Interface of a Sprite */
 export interface ISprite extends IRenderable {
     /** Drawable Object */
-    graphic: IRenderable
+    graphic?: IRenderable
 
     /** Position X-axis */
     x: number
 
     /** Position Y-axis */
     y: number
+
+    /** Scale Factor */
+    scale: number
+
+    /** Rotation is Radians */
+    rotation: number
 }
 
 /** Sprite Base Class */
 export abstract class SpriteBase implements ISprite {
     /** Drawable Object */
-    graphic: IRenderable
+    graphic?: IRenderable
 
     /** Position X-axis */
     x: number
 
     /** Position Y-axis */
     y: number
+
+    /** Scale Factor */
+    scale: number
+
+    /** Rotation is Radians */
+    rotation: number
 
     /**
      * Sprite Constructor
@@ -29,10 +41,20 @@ export abstract class SpriteBase implements ISprite {
      * @param y Position Y-axis
      * @param graphic Renderable Graphic
      */
-    constructor(x: number, y: number, graphic: IRenderable) {
+    constructor(x: number = 0, y: number = 0, scale: number = 1, rotation: number = 0, graphic?: IRenderable) {
         this.graphic = graphic
         this.x = x
         this.y = y
+        this.scale = scale
+        this.rotation = rotation
+    }
+
+    /**
+     * Use Graphic for Sprite
+     * @param graphic Renderable Graphic
+     */
+    useGraphic(graphic: IRenderable) {
+        this.graphic = graphic
     }
 
     /**
@@ -40,14 +62,16 @@ export abstract class SpriteBase implements ISprite {
      * @param dt Delta Time
      */
     update(dt: number) {
-        this.graphic.update(dt)
+        this.graphic?.update(dt)
     }
 
     /** Drawing Method */
     draw() {
         love.graphics.push("transform")
         love.graphics.translate(this.x, this.y)
-        this.graphic.draw()
+        love.graphics.scale(this.scale)
+        love.graphics.rotate(this.rotation)
+        this.graphic?.draw()
         love.graphics.pop()
     }
 }

@@ -4,18 +4,45 @@ local ____exports = {}
 ____exports.SpriteBase = __TS__Class()
 local SpriteBase = ____exports.SpriteBase
 SpriteBase.name = "SpriteBase"
-function SpriteBase.prototype.____constructor(self, x, y, graphic)
+function SpriteBase.prototype.____constructor(self, x, y, scale, rotation, graphic)
+    if x == nil then
+        x = 0
+    end
+    if y == nil then
+        y = 0
+    end
+    if scale == nil then
+        scale = 1
+    end
+    if rotation == nil then
+        rotation = 0
+    end
     self.graphic = graphic
     self.x = x
     self.y = y
+    self.scale = scale
+    self.rotation = rotation
+end
+function SpriteBase.prototype.useGraphic(self, graphic)
+    self.graphic = graphic
 end
 function SpriteBase.prototype.update(self, dt)
-    self.graphic:update(dt)
+    local ____table_graphic_update_result_0 = self.graphic
+    if ____table_graphic_update_result_0 ~= nil then
+        ____table_graphic_update_result_0 = ____table_graphic_update_result_0:update(dt)
+    end
+    local ____ = ____table_graphic_update_result_0
 end
 function SpriteBase.prototype.draw(self)
     love.graphics.push("transform")
     love.graphics.translate(self.x, self.y)
-    self.graphic:draw()
+    love.graphics.scale(self.scale)
+    love.graphics.rotate(self.rotation)
+    local ____table_graphic_draw_result_2 = self.graphic
+    if ____table_graphic_draw_result_2 ~= nil then
+        ____table_graphic_draw_result_2 = ____table_graphic_draw_result_2:draw()
+    end
+    local ____ = ____table_graphic_draw_result_2
     love.graphics.pop()
 end
 ____exports.Sprite = __TS__Class()

@@ -20,7 +20,7 @@ export class Rectangle implements IRenderable {
      * @param width Drawing Width
      * @param height Drawing Height
      */
-    constructor(mode: DrawMode, width: number, height: number, roundness = 0) {
+    constructor(mode: DrawMode, width: number, height: number, roundness: number = 0) {
         this.mode = mode
         this.width = width
         this.height = height
