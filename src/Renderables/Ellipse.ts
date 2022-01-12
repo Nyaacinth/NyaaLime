@@ -12,6 +12,15 @@ export class Ellipse implements IRenderable {
     /** Drawing Height */
     height: number
 
+    /** Ellipse Color */
+    color: [r: number, g: number, b: number, a?: number] = [1, 1, 1]
+
+    /** Border Thickness */
+    border_thickness = 0
+
+    /** Border Color */
+    border_color: [r: number, g: number, b: number, a?: number] = [1, 1, 1]
+
     /**
      * Ellipse Constructor
      * @param mode Drawing Mode
@@ -29,6 +38,14 @@ export class Ellipse implements IRenderable {
 
     /** Draw Method, draw a ellipse */
     draw() {
-        love.graphics.ellipse(this.mode, 0, 0, this.width, this.height)
+        love.graphics.push("all")
+        love.graphics.setLineWidth(this.border_thickness)
+        love.graphics.setColor(this.border_color)
+        love.graphics.ellipse("line", 0, 0, this.width, this.height)
+        if (this.mode == "fill") {
+            love.graphics.setColor(this.color)
+            love.graphics.ellipse("fill", 0, 0, this.width, this.height)
+        }
+        love.graphics.pop()
     }
 }

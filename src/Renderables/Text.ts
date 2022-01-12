@@ -1,9 +1,9 @@
-import {Font} from "love.graphics"
+import {ColouredText, Font} from "love.graphics"
 import {IRenderable} from "../Renderable"
 
 export class Text implements IRenderable {
     /** Text Content */
-    text: string
+    text: string | ColouredText
 
     /** Text Font */
     font: Font
@@ -13,7 +13,7 @@ export class Text implements IRenderable {
      * @param text Text Content
      * @param font Font Object
      */
-    constructor(text: string, font?: Font) {
+    constructor(text: string | ColouredText, font?: Font) {
         this.text = text
         this.font = font ?? love.graphics.getFont() ?? love.graphics.newFont()
     }

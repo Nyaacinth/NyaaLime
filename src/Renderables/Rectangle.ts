@@ -12,7 +12,16 @@ export class Rectangle implements IRenderable {
     height: number
 
     /** Round corner */
-    roundness: number
+    roundness = 0
+
+    /** Rectangle Color */
+    color: [r: number, g: number, b: number, a?: number] = [1, 1, 1]
+
+    /** Border Thickness */
+    border_thickness = 0
+
+    /** Border Color */
+    border_color: [r: number, g: number, b: number, a?: number] = [1, 1, 1]
 
     /**
      * Rectangle Constructor
@@ -20,11 +29,10 @@ export class Rectangle implements IRenderable {
      * @param width Drawing Width
      * @param height Drawing Height
      */
-    constructor(mode: DrawMode, width: number, height: number, roundness: number = 0) {
+    constructor(mode: DrawMode, width: number, height: number) {
         this.mode = mode
         this.width = width
         this.height = height
-        this.roundness = roundness
     }
 
     /** Update Method, no functional */
@@ -32,6 +40,14 @@ export class Rectangle implements IRenderable {
 
     /** Draw Method, draw a rectangle */
     draw() {
-        love.graphics.rectangle(this.mode, 0, 0, this.width, this.height, this.roundness)
+        love.graphics.push("all")
+        love.graphics.setLineWidth(this.border_thickness)
+        love.graphics.setColor(this.border_color)
+        love.graphics.rectangle("line", 0, 0, this.width, this.height, this.roundness)
+        if (this.mode == "fill") {
+            love.graphics.setColor(this.color)
+            love.graphics.rectangle("fill", 0, 0, this.width, this.height, this.roundness)
+        }
+        love.graphics.pop()
     }
 }

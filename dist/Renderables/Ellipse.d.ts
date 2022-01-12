@@ -8,6 +8,12 @@ export declare class Ellipse implements IRenderable {
     width: number;
     /** Drawing Height */
     height: number;
+    /** Ellipse Color */
+    color: [r: number, g: number, b: number, a?: number];
+    /** Border Thickness */
+    border_thickness: number;
+    /** Border Color */
+    border_color: [r: number, g: number, b: number, a?: number];
     /**
      * Ellipse Constructor
      * @param mode Drawing Mode
