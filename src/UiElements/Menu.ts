@@ -49,6 +49,8 @@ export class Menu implements IRenderable {
                 if (this.selected_item > this.items.length - 1) {
                     this.selected_item = 0
                 }
+            } else if (this.input.isDown("action")) {
+                this.items[this.selected_item][1]()
             }
             this.handled = true
         }

@@ -31,6 +31,9 @@ function Menu.prototype.update(self)
             if self.selected_item > #self.items - 1 then
                 self.selected_item = 0
             end
+        elseif self.input:isDown("action") then
+            local ____self_0 = self.items[self.selected_item + 1]
+            ____self_0[2](____self_0)
         end
         self.handled = true
     end
