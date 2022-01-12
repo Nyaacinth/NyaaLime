@@ -17,7 +17,7 @@ export class Textbox extends Rectangle implements IRenderable {
      * @param width Drawing Width
      * @param height Drawing Height
      */
-    constructor(text: string | ColouredText, font: Font, width: number, height: number) {
+    constructor(text: string | ColouredText, width: number, height: number, font: Font = love.graphics.getFont() ?? love.graphics.newFont()) {
         super("line", width, height)
         this.text = text
         this.font = font

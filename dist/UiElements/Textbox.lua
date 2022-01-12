@@ -7,7 +7,10 @@ ____exports.Textbox = __TS__Class()
 local Textbox = ____exports.Textbox
 Textbox.name = "Textbox"
 __TS__ClassExtends(Textbox, Rectangle)
-function Textbox.prototype.____constructor(self, text, font, width, height)
+function Textbox.prototype.____constructor(self, text, width, height, font)
+    if font == nil then
+        font = love.graphics.getFont() or love.graphics.newFont()
+    end
     Rectangle.prototype.____constructor(self, "line", width, height)
     self.text = text
     self.font = font
