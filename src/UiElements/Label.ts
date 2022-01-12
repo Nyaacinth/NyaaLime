@@ -1,7 +1,7 @@
 import {ColouredText, Font} from "love.graphics"
 import {IRenderable} from "../Renderable"
 
-export class Text implements IRenderable {
+export class Label implements IRenderable {
     /** Text Content */
     text: string | ColouredText
 

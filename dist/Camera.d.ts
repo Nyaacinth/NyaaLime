@@ -21,10 +21,7 @@ export declare class Camera {
          * Common Smoother, speed proportional to the distance to the target
          * @param vargs `[0]`: speed factor (1 = 100% -> Instantly), defaults to 0.1
          */
-        common(x: number, y: number, dx: number, dy: number, ...vargs: unknown[]): LuaMultiReturn<[
-            fixed_x: number,
-            fixed_y: number
-        ]>;
+        common(x: number, y: number, dx: number, dy: number, ...vargs: unknown[]): LuaMultiReturn<[fixed_x: number, fixed_y: number]>;
     };
     /**
      * Camera Constructor
