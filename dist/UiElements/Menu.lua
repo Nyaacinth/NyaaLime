@@ -30,6 +30,7 @@ function Menu.prototype.draw(self)
             local display = self.items[key + 1][1]
             love.graphics.print(
                 display,
+                0,
                 key * self.font:getHeight()
             )
             if self.selected_item == key then

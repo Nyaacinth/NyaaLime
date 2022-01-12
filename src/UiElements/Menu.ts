@@ -24,7 +24,7 @@ export class Menu implements IRenderable {
         love.graphics.setFont(this.font)
         for (let key = 0; key < this.items.length; key++) {
             let display = this.items[key][0]
-            love.graphics.print(display, key * this.font.getHeight())
+            love.graphics.print(display, 0, key * this.font.getHeight())
             if (this.selected_item == key) {
                 let raw_display = ""
                 if (typeof display == "string") {
