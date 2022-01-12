@@ -3,7 +3,7 @@ import {KeyConstant} from "love.keyboard"
 import {Input} from "../Input"
 import {IRenderable} from "../Renderable"
 
-class Menu implements IRenderable {
+export class Menu implements IRenderable {
     font: Font
     selected_item = 0
     items: [display: string | ColouredText, action: () => void][]

@@ -3,7 +3,8 @@ require("lualib_bundle");
 local ____exports = {}
 local ____Input = require("Input")
 local Input = ____Input.Input
-local Menu = __TS__Class()
+____exports.Menu = __TS__Class()
+local Menu = ____exports.Menu
 Menu.name = "Menu"
 function Menu.prototype.____constructor(self, bindings, items, font)
     if items == nil then
