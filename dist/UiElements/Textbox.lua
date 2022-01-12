@@ -1,8 +1,8 @@
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
-local _____2E_2E = require("index")
-local Rectangle = _____2E_2E.Rectangle
+local ____Rectangle = require("Renderables.Rectangle")
+local Rectangle = ____Rectangle.Rectangle
 ____exports.Textbox = __TS__Class()
 local Textbox = ____exports.Textbox
 Textbox.name = "Textbox"

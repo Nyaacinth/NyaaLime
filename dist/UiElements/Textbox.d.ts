@@ -1,5 +1,6 @@
 import { ColouredText, Font } from "love.graphics";
-import { IRenderable, Rectangle } from "..";
+import { IRenderable } from "../Renderable";
+import { Rectangle } from "../Renderables/Rectangle";
 /** Textbox Class */
 export declare class Textbox extends Rectangle implements IRenderable {
     /** Text Content */
