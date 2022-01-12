@@ -14,12 +14,28 @@ function Menu.prototype.____constructor(self, bindings, items, font)
         font = love.graphics.getFont() or love.graphics.newFont()
     end
     self.selected_item = 0
-    self.just_pressed = false
+    self.handled = false
     self.input = __TS__New(Input, bindings)
     self.items = items
     self.font = font
 end
 function Menu.prototype.update(self)
+    if self.input:isDown() and not self.handled then
+        if self.input:isDown("up") then
+            self.selected_item = self.selected_item - 1
+            if self.selected_item < 0 then
+                self.selected_item = #self.items - 1
+            end
+        elseif self.input:isDown("down") then
+            self.selected_item = self.selected_item + 1
+            if self.selected_item > #self.items - 1 then
+                self.selected_item = 0
+            end
+        end
+        self.handled = true
+    else
+        self.handled = false
+    end
 end
 function Menu.prototype.draw(self)
     love.graphics.push("all")

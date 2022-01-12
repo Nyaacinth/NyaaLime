@@ -3,22 +3,60 @@ import {KeyConstant} from "love.keyboard"
 import {Input} from "../Input"
 import {IRenderable} from "../Renderable"
 
+/** Menu Class */
 export class Menu implements IRenderable {
+    /** Menu Font */
     font: Font
+
+    /** Selected Item Counter */
     selected_item = 0
+
+    /** Menu Items */
     items: [display: string | ColouredText, action: () => void][]
+
+    /** Input Handler */
     protected input: Input
-    protected just_pressed = false
+
+    /** Handled Tag */
+    protected handled = false
+
+    /**
+     * Menu Constructor
+     * @param bindings Input Bindings, need "up", "down", "action" binded
+     * @param items Menu Items
+     * @param font Menu Font
+     */
     constructor(
         bindings: {[action_name: string]: KeyConstant},
-        items: [display: string, action: () => void][] = [],
+        items: [display: string | ColouredText, action: () => void][] = [],
         font: Font = love.graphics.getFont() ?? love.graphics.newFont()
     ) {
         this.input = new Input(bindings)
         this.items = items
         this.font = font
     }
-    update() {}
+
+    /** Update Method, move cursor */
+    update() {
+        if (this.input.isDown() && !this.handled) {
+            if (this.input.isDown("up")) {
+                this.selected_item -= 1
+                if (this.selected_item < 0) {
+                    this.selected_item = this.items.length - 1
+                }
+            } else if (this.input.isDown("down")) {
+                this.selected_item += 1
+                if (this.selected_item > this.items.length - 1) {
+                    this.selected_item = 0
+                }
+            }
+            this.handled = true
+        } else {
+            this.handled = false
+        }
+    }
+
+    /** Draw Method, draw the menu */
     draw() {
         love.graphics.push("all")
         love.graphics.setFont(this.font)
