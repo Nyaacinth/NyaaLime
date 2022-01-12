@@ -15,9 +15,6 @@ function Polygon.prototype.update(self)
 end
 function Polygon.prototype.draw(self)
     love.graphics.push("all")
-    love.graphics.setLineWidth(self.border_thickness)
-    love.graphics.setColor(self.border_color)
-    love.graphics.polygon("line", self.points)
     if self.mode == "fill" then
         love.graphics.setColor(self.color)
         local triangles = love.math.triangulate(self.points)
@@ -25,6 +22,9 @@ function Polygon.prototype.draw(self)
             love.graphics.polygon("fill", triangle)
         end
     end
+    love.graphics.setLineWidth(self.border_thickness)
+    love.graphics.setColor(self.border_color)
+    love.graphics.polygon("line", self.points)
     love.graphics.pop()
 end
 return ____exports

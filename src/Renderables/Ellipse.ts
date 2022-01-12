@@ -39,13 +39,13 @@ export class Ellipse implements IRenderable {
     /** Draw Method, draw a ellipse */
     draw() {
         love.graphics.push("all")
-        love.graphics.setLineWidth(this.border_thickness)
-        love.graphics.setColor(this.border_color)
-        love.graphics.ellipse("line", 0, 0, this.width, this.height)
         if (this.mode == "fill") {
             love.graphics.setColor(this.color)
             love.graphics.ellipse("fill", 0, 0, this.width, this.height)
         }
+        love.graphics.setLineWidth(this.border_thickness)
+        love.graphics.setColor(this.border_color)
+        love.graphics.ellipse("line", 0, 0, this.width, this.height)
         love.graphics.pop()
     }
 }

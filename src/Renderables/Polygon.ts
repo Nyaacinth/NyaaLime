@@ -33,9 +33,6 @@ export class Polygon implements IRenderable {
     /** Draw Method, draw a polygon */
     draw() {
         love.graphics.push("all")
-        love.graphics.setLineWidth(this.border_thickness)
-        love.graphics.setColor(this.border_color)
-        love.graphics.polygon("line", this.points)
         if (this.mode == "fill") {
             love.graphics.setColor(this.color)
             let triangles = love.math.triangulate(this.points)
@@ -43,6 +40,9 @@ export class Polygon implements IRenderable {
                 love.graphics.polygon("fill", triangle)
             }
         }
+        love.graphics.setLineWidth(this.border_thickness)
+        love.graphics.setColor(this.border_color)
+        love.graphics.polygon("line", this.points)
         love.graphics.pop()
     }
 }

@@ -16,15 +16,6 @@ function Ellipse.prototype.update(self)
 end
 function Ellipse.prototype.draw(self)
     love.graphics.push("all")
-    love.graphics.setLineWidth(self.border_thickness)
-    love.graphics.setColor(self.border_color)
-    love.graphics.ellipse(
-        "line",
-        0,
-        0,
-        self.width,
-        self.height
-    )
     if self.mode == "fill" then
         love.graphics.setColor(self.color)
         love.graphics.ellipse(
@@ -35,6 +26,15 @@ function Ellipse.prototype.draw(self)
             self.height
         )
     end
+    love.graphics.setLineWidth(self.border_thickness)
+    love.graphics.setColor(self.border_color)
+    love.graphics.ellipse(
+        "line",
+        0,
+        0,
+        self.width,
+        self.height
+    )
     love.graphics.pop()
 end
 return ____exports

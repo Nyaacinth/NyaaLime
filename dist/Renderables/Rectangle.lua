@@ -17,16 +17,6 @@ function Rectangle.prototype.update(self)
 end
 function Rectangle.prototype.draw(self)
     love.graphics.push("all")
-    love.graphics.setLineWidth(self.border_thickness)
-    love.graphics.setColor(self.border_color)
-    love.graphics.rectangle(
-        "line",
-        0,
-        0,
-        self.width,
-        self.height,
-        self.roundness
-    )
     if self.mode == "fill" then
         love.graphics.setColor(self.color)
         love.graphics.rectangle(
@@ -38,6 +28,16 @@ function Rectangle.prototype.draw(self)
             self.roundness
         )
     end
+    love.graphics.setLineWidth(self.border_thickness)
+    love.graphics.setColor(self.border_color)
+    love.graphics.rectangle(
+        "line",
+        0,
+        0,
+        self.width,
+        self.height,
+        self.roundness
+    )
     love.graphics.pop()
 end
 return ____exports

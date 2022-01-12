@@ -41,13 +41,13 @@ export class Rectangle implements IRenderable {
     /** Draw Method, draw a rectangle */
     draw() {
         love.graphics.push("all")
-        love.graphics.setLineWidth(this.border_thickness)
-        love.graphics.setColor(this.border_color)
-        love.graphics.rectangle("line", 0, 0, this.width, this.height, this.roundness)
         if (this.mode == "fill") {
             love.graphics.setColor(this.color)
             love.graphics.rectangle("fill", 0, 0, this.width, this.height, this.roundness)
         }
+        love.graphics.setLineWidth(this.border_thickness)
+        love.graphics.setColor(this.border_color)
+        love.graphics.rectangle("line", 0, 0, this.width, this.height, this.roundness)
         love.graphics.pop()
     }
 }
