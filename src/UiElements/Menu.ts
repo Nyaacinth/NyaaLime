@@ -27,15 +27,12 @@ export class Menu implements IRenderable {
             love.graphics.print(display, key * this.font.getHeight())
             if (this.selected_item == key) {
                 let raw_display = ""
-                switch (typeof display) {
-                    case "string": {
-                        raw_display = display
-                    }
-                    default: {
-                        for (let display_element of display) {
-                            if (typeof display_element == "string") {
-                                raw_display += display_element
-                            }
+                if (typeof display == "string") {
+                    raw_display = display
+                } else {
+                    for (let display_element of display) {
+                        if (typeof display_element == "string") {
+                            raw_display += display_element
                         }
                     }
                 }

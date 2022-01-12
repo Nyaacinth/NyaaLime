@@ -34,24 +34,15 @@ function Menu.prototype.draw(self)
             )
             if self.selected_item == key then
                 local raw_display = ""
-                repeat
-                    local ____switch7 = __TS__TypeOf(display)
-                    local ____cond7 = ____switch7 == "string"
-                    if ____cond7 then
-                        do
-                            raw_display = display
+                if type(display) == "string" then
+                    raw_display = display
+                else
+                    for ____, display_element in ipairs(display) do
+                        if type(display_element) == "string" then
+                            raw_display = raw_display .. display_element
                         end
                     end
-                    do
-                        do
-                            for ____, display_element in ipairs(display) do
-                                if type(display_element) == "string" then
-                                    raw_display = raw_display .. display_element
-                                end
-                            end
-                        end
-                    end
-                until true
+                end
                 love.graphics.rectangle(
                     "line",
                     0,
