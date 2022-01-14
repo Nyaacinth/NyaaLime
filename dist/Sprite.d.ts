@@ -59,4 +59,9 @@ export declare class Sprite extends SpriteBase {
      * @param rotation Rotation, in radians
      */
     constructor(x?: number, y?: number, scale?: number, rotation?: number);
+    /**
+     * Use Specific Layer for Sprite
+     * @param graphic Renderable Graphic
+     */
+    useGraphic(graphic: Layer): void;
 }

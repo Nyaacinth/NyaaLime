@@ -61,4 +61,7 @@ function Sprite.prototype.____constructor(self, x, y, scale, rotation)
     )
     self.graphic = __TS__New(Layer)
 end
+function Sprite.prototype.useGraphic(self, graphic)
+    Sprite.____super.prototype.useGraphic(self, graphic)
+end
 return ____exports

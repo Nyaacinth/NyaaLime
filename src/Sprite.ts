@@ -94,4 +94,12 @@ export class Sprite extends SpriteBase {
     constructor(x?: number, y?: number, scale?: number, rotation?: number) {
         super(x, y, scale, rotation)
     }
+
+    /**
+     * Use Specific Layer for Sprite
+     * @param graphic Renderable Graphic
+     */
+    override useGraphic(graphic: Layer) {
+        super.useGraphic(graphic)
+    }
 }
