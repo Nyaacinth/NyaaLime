@@ -27,6 +27,8 @@ export declare class Menu implements IUiElement {
      * @param bindings Input Bindings, need "up", "down", "action" binded
      * @param items Menu Items
      * @param font Menu Font
+     * @param x Position X-axis
+     * @param y Position Y-axis
      */
     constructor(bindings: {
         [action_name: string]: KeyConstant;

@@ -44,6 +44,8 @@ export class Tilemap implements IUiElement {
      * @param tile_width Tile Width
      * @param tile_height Tile Height
      * @param tilemap Tilemap Data
+     * @param x Position X-axis
+     * @param y Position Y-axis
      */
     constructor(tileset_image: Image, tile_width: number, tile_height: number, tilemap: number[][], x: number = 0, y: number = 0) {
         this.x = x

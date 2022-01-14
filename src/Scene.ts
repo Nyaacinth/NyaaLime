@@ -1,3 +1,4 @@
+import {Layer} from "./Layer"
 import {IRenderable} from "./Renderable"
 import {Signal} from "./Signal"
 
@@ -34,38 +35,7 @@ export interface IScene extends IRenderable {
 }
 
 /** Scene Base Class */
-export abstract class SceneBase implements IScene {
-    /** Scene Children */
-    protected children: IRenderable[] = []
-
-    /** Scene Signal Object */
+export abstract class SceneBase extends Layer implements IScene {
+    /** Signal Object */
     signal = new Signal()
-
-    /**
-     * Add child to the scene
-     * @param child Child to add
-     */
-    addChild(child: IRenderable) {
-        if (this.children.includes(child)) return
-        this.children.push(child)
-    }
-
-    /**
-     * Remove child from the scene
-     * @param child Child to remove
-     */
-    removeChild(child: IRenderable) {
-        let child_index = this.children.indexOf(child)
-        if (child_index > -1) {
-            this.children.splice(child_index, 1)
-        }
-    }
-
-    update(dt: number) {
-        this.children.forEach((child) => child.update(dt))
-    }
-
-    draw() {
-        this.children.forEach((child) => child.draw())
-    }
 }

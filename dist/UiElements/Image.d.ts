@@ -15,6 +15,8 @@ export declare class Image implements IUiElement {
     /**
      * Image Constructor
      * @param image_data Image Data
+     * @param x Position X-axis
+     * @param y Position Y-axis
      */
     constructor(image_data: ImageData, x?: number, y?: number);
     /** Update Method, no functional */

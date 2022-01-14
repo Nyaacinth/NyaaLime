@@ -13,6 +13,8 @@ export declare class Textbox extends Rectangle implements IUiElement {
      * @param font Text Font
      * @param width Drawing Width
      * @param height Drawing Height
+     * @param x Position X-axis
+     * @param y Position Y-axis
      */
     constructor(text: string | ColouredText, width: number, height: number, font?: Font, x?: number, y?: number);
     draw(): void;

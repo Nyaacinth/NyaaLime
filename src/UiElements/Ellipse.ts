@@ -32,6 +32,8 @@ export class Ellipse implements IUiElement {
      * @param mode Drawing Mode
      * @param width Drawing Width
      * @param height Drawing Height
+     * @param x Position X-axis
+     * @param y Position Y-axis
      */
     constructor(mode: DrawMode, width: number, height: number, x: number = 0, y: number = 0) {
         this.x = x

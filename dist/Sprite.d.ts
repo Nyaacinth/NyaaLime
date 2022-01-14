@@ -1,3 +1,4 @@
+import { Layer } from "./Layer";
 import { IRenderable } from "./Renderable";
 /** Interface of a Sprite */
 export interface ISprite extends IRenderable {
@@ -22,12 +23,14 @@ export declare abstract class SpriteBase implements ISprite {
     y: number;
     /** Scale Factor */
     scale: number;
-    /** Rotation is Radians */
+    /** Rotation, in radians */
     rotation: number;
     /**
-     * Sprite Constructor
+     * Sprite Base Constructor
      * @param x Position X-axis
      * @param y Position Y-axis
+     * @param scale Scale Factor
+     * @param rotation Rotation, in radians
      * @param graphic Renderable Graphic
      */
     constructor(x?: number, y?: number, scale?: number, rotation?: number, graphic?: IRenderable);
@@ -46,4 +49,14 @@ export declare abstract class SpriteBase implements ISprite {
 }
 /** Sprite Class */
 export declare class Sprite extends SpriteBase {
+    /** Graphic Layer */
+    graphic: Layer;
+    /**
+     * Sprite Constructor
+     * @param x Position X-axis
+     * @param y Position Y-axis
+     * @param scale Scale Factor
+     * @param rotation Rotation, in radians
+     */
+    constructor(x?: number, y?: number, scale?: number, rotation?: number);
 }

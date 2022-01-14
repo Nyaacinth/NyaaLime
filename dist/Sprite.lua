@@ -1,6 +1,8 @@
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 require("lualib_bundle");
 local ____exports = {}
+local ____Layer = require("Layer")
+local Layer = ____Layer.Layer
 ____exports.SpriteBase = __TS__Class()
 local SpriteBase = ____exports.SpriteBase
 SpriteBase.name = "SpriteBase"
@@ -49,4 +51,14 @@ ____exports.Sprite = __TS__Class()
 local Sprite = ____exports.Sprite
 Sprite.name = "Sprite"
 __TS__ClassExtends(Sprite, ____exports.SpriteBase)
+function Sprite.prototype.____constructor(self, x, y, scale, rotation)
+    Sprite.____super.prototype.____constructor(
+        self,
+        x,
+        y,
+        scale,
+        rotation
+    )
+    self.graphic = __TS__New(Layer)
+end
 return ____exports

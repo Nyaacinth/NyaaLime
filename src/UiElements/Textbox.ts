@@ -16,6 +16,8 @@ export class Textbox extends Rectangle implements IUiElement {
      * @param font Text Font
      * @param width Drawing Width
      * @param height Drawing Height
+     * @param x Position X-axis
+     * @param y Position Y-axis
      */
     constructor(text: string | ColouredText, width: number, height: number, font: Font = love.graphics.getFont() ?? love.graphics.newFont(), x: number = 0, y: number = 0) {
         super("line", width, height, x, y)

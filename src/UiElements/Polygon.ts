@@ -51,6 +51,8 @@ export class Polygon implements IUiElement {
      * Polygon Constructor
      * @param mode Drawing Mode
      * @param points Points Details, `[x1, y1, x2, y2, ...]`
+     * @param x Position X-axis
+     * @param y Position Y-axis
      */
     constructor(mode: DrawMode, points: number[], x: number = 0, y: number = 0) {
         this.x = x

@@ -26,6 +26,8 @@ export declare class Animation implements IUiElement {
      * @param frame_width Frame Width
      * @param frame_height Frame Height
      * @param duration Animation Duration
+     * @param x Position X-axis
+     * @param y Position Y-axis
      */
     constructor(image: Image, frame_width: number, frame_height: number, duration: number, x?: number, y?: number);
     /**

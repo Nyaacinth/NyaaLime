@@ -39,6 +39,8 @@ export class Label implements IUiElement {
      * Text Consturctor
      * @param text Text Content
      * @param font Font Object
+     * @param x Position X-axis
+     * @param y Position Y-axis
      */
     constructor(text: string | ColouredText, font?: Font, x: number = 0, y: number = 0) {
         this.x = x

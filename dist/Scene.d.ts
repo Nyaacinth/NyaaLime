@@ -1,3 +1,4 @@
+import { Layer } from "./Layer";
 import { IRenderable } from "./Renderable";
 import { Signal } from "./Signal";
 /** Interface of a Scene */
@@ -26,21 +27,7 @@ export interface IScene extends IRenderable {
     leave?(): void;
 }
 /** Scene Base Class */
-export declare abstract class SceneBase implements IScene {
-    /** Scene Children */
-    protected children: IRenderable[];
-    /** Scene Signal Object */
+export declare abstract class SceneBase extends Layer implements IScene {
+    /** Signal Object */
     signal: Signal;
-    /**
-     * Add child to the scene
-     * @param child Child to add
-     */
-    addChild(child: IRenderable): void;
-    /**
-     * Remove child from the scene
-     * @param child Child to remove
-     */
-    removeChild(child: IRenderable): void;
-    update(dt: number): void;
-    draw(): void;
 }
