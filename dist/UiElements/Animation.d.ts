@@ -1,11 +1,19 @@
 import { Image, Quad } from "love.graphics";
-import { IRenderable } from "../Renderable";
+import { IUiElement } from "../UiElement";
 /** Animation Class */
-export declare class Animation implements IRenderable {
+export declare class Animation implements IUiElement {
+    /** Position X-axis */
+    x: number;
+    /** Position Y-axis */
+    y: number;
+    /** Width */
+    readonly width: number;
+    /** Height */
+    readonly height: number;
     /** Image Object */
-    image_object: Image;
+    readonly image_object: Image;
     /** Animation Frames */
-    frames: Quad[];
+    readonly frames: Quad[];
     /** Frame Index */
     frame_index: number;
     /** Animation Total Duration */
@@ -19,7 +27,7 @@ export declare class Animation implements IRenderable {
      * @param frame_height Frame Height
      * @param duration Animation Duration
      */
-    constructor(image: Image, frame_width: number, frame_height: number, duration: number);
+    constructor(image: Image, frame_width: number, frame_height: number, duration: number, x?: number, y?: number);
     /**
      * Update Method, update the animtion
      * @param dt Delta Time

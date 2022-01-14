@@ -4,8 +4,16 @@ local ____exports = {}
 ____exports.Tilemap = __TS__Class()
 local Tilemap = ____exports.Tilemap
 Tilemap.name = "Tilemap"
-function Tilemap.prototype.____constructor(self, tileset_image, tile_width, tile_height, tilemap)
+function Tilemap.prototype.____constructor(self, tileset_image, tile_width, tile_height, tilemap, x, y)
+    if x == nil then
+        x = 0
+    end
+    if y == nil then
+        y = 0
+    end
     self.tileset = {}
+    self.x = x
+    self.y = y
     self.tileset_image = tileset_image
     self.tile_width = tile_width
     self.tile_height = tile_height
@@ -49,6 +57,30 @@ function Tilemap.prototype.____constructor(self, tileset_image, tile_width, tile
         end
     end
 end
+__TS__SetDescriptor(
+    Tilemap.prototype,
+    "width",
+    {get = function(self)
+        local max_width = 0
+        do
+            local height_index = 0
+            while height_index < #self.tilemap do
+                max_width = math.max(max_width, #self.tilemap[height_index + 1] * self.tile_width)
+                height_index = height_index + 1
+            end
+        end
+        return max_width
+    end},
+    true
+)
+__TS__SetDescriptor(
+    Tilemap.prototype,
+    "height",
+    {get = function(self)
+        return #self.tilemap * self.tile_height
+    end},
+    true
+)
 function Tilemap.prototype.update(self)
 end
 function Tilemap.prototype.draw(self)
@@ -60,7 +92,7 @@ function Tilemap.prototype.draw(self)
                 local width_index = 0
                 while width_index < #current_column do
                     local current = current_column[width_index + 1]
-                    love.graphics.draw(self.tileset_image, self.tileset[current + 1], width_index * self.tile_width, height_index * self.tile_height)
+                    love.graphics.draw(self.tileset_image, self.tileset[current + 1], self.x + width_index * self.tile_width, self.y + height_index * self.tile_height)
                     width_index = width_index + 1
                 end
             end

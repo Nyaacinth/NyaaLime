@@ -1,6 +1,14 @@
 import { DrawMode } from "love.graphics";
-import { IRenderable } from "../Renderable";
-export declare class Polygon implements IRenderable {
+import { IUiElement } from "../UiElement";
+export declare class Polygon implements IUiElement {
+    /** Position X-axis */
+    x: number;
+    /** Position Y-axis */
+    y: number;
+    /** Drawing Width */
+    get width(): number;
+    /** Drawing Height */
+    get height(): number;
     /** Drawing Mode */
     mode: DrawMode;
     /** Points Details, `[x1, y1, x2, y2, ...]` */
@@ -16,7 +24,7 @@ export declare class Polygon implements IRenderable {
      * @param mode Drawing Mode
      * @param points Points Details, `[x1, y1, x2, y2, ...]`
      */
-    constructor(mode: DrawMode, points: number[]);
+    constructor(mode: DrawMode, points: number[], x?: number, y?: number);
     /** Update Method, no functional */
     update(): void;
     /** Draw Method, draw a polygon */

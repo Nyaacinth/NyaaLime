@@ -1,9 +1,17 @@
 import { ColouredText, Font } from "love.graphics";
 import { KeyConstant } from "love.keyboard";
 import { Input } from "../Input";
-import { IRenderable } from "../Renderable";
+import { IUiElement } from "../UiElement";
 /** Menu Class */
-export declare class Menu implements IRenderable {
+export declare class Menu implements IUiElement {
+    /** Position X-axis */
+    x: number;
+    /** Position Y-axis */
+    y: number;
+    /** Drawing Width */
+    get width(): number;
+    /** Drawing Height */
+    get height(): number;
     /** Menu Font */
     font: Font;
     /** Selected Item Counter */
@@ -22,7 +30,7 @@ export declare class Menu implements IRenderable {
      */
     constructor(bindings: {
         [action_name: string]: KeyConstant;
-    }, items?: [display: string | ColouredText, action: () => void][], font?: Font);
+    }, items?: [display: string | ColouredText, action: () => void][], font?: Font, x?: number, y?: number);
     /** Update Method, move cursor */
     update(): void;
     /** Draw Method, draw the menu */

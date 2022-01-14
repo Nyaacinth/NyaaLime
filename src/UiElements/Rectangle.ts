@@ -1,15 +1,21 @@
 import {DrawMode} from "love.graphics"
-import {IRenderable} from "../Renderable"
+import {IUiElement} from "../UiElement"
 
-export class Rectangle implements IRenderable {
-    /** Drawing Mode */
-    mode: DrawMode
+export class Rectangle implements IUiElement {
+    /** Position X-axis */
+    x: number
+
+    /** Position Y-axis */
+    y: number
 
     /** Drawing Width */
     width: number
 
     /** Drawing Height */
     height: number
+
+    /** Drawing Mode */
+    mode: DrawMode
 
     /** Round corner */
     roundness = 0
@@ -29,7 +35,9 @@ export class Rectangle implements IRenderable {
      * @param width Drawing Width
      * @param height Drawing Height
      */
-    constructor(mode: DrawMode, width: number, height: number) {
+    constructor(mode: DrawMode, width: number, height: number, x: number = 0, y: number = 0) {
+        this.x = x
+        this.y = y
         this.mode = mode
         this.width = width
         this.height = height
@@ -43,11 +51,11 @@ export class Rectangle implements IRenderable {
         love.graphics.push("all")
         if (this.mode == "fill") {
             love.graphics.setColor(this.color)
-            love.graphics.rectangle("fill", 0, 0, this.width, this.height, this.roundness)
+            love.graphics.rectangle("fill", this.x, this.y, this.width, this.height, this.roundness)
         }
         love.graphics.setLineWidth(this.border_thickness)
         love.graphics.setColor(this.border_color)
-        love.graphics.rectangle("line", 0, 0, this.width, this.height, this.roundness)
+        love.graphics.rectangle("line", this.x, this.y, this.width, this.height, this.roundness)
         love.graphics.pop()
     }
 }

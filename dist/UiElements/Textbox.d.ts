@@ -1,8 +1,8 @@
 import { ColouredText, Font } from "love.graphics";
-import { IRenderable } from "../Renderable";
-import { Rectangle } from "../Renderables/Rectangle";
+import { IUiElement } from "../UiElement";
+import { Rectangle } from "./Rectangle";
 /** Textbox Class */
-export declare class Textbox extends Rectangle implements IRenderable {
+export declare class Textbox extends Rectangle implements IUiElement {
     /** Text Content */
     text: string | ColouredText;
     /** Text Font */
@@ -14,6 +14,6 @@ export declare class Textbox extends Rectangle implements IRenderable {
      * @param width Drawing Width
      * @param height Drawing Height
      */
-    constructor(text: string | ColouredText, width: number, height: number, font?: Font);
+    constructor(text: string | ColouredText, width: number, height: number, font?: Font, x?: number, y?: number);
     draw(): void;
 }

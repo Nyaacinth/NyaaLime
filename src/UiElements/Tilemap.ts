@@ -1,8 +1,28 @@
 import {Image, Quad} from "love.graphics"
-import {IRenderable} from "../Renderable"
+import {IUiElement} from "../UiElement"
 
 /** Tilemap Class */
-export class Tilemap implements IRenderable {
+export class Tilemap implements IUiElement {
+    /** Position X-axis */
+    x: number
+
+    /** Position Y-axis */
+    y: number
+
+    /** Drawing Width */
+    get width() {
+        let max_width = 0
+        for (let height_index = 0; height_index < this.tilemap.length; height_index++) {
+            max_width = Math.max(max_width, this.tilemap[height_index].length * this.tile_width)
+        }
+        return max_width
+    }
+
+    /** Drawing Height */
+    get height() {
+        return this.tilemap.length * this.tile_height
+    }
+
     /** Tileset Image */
     tileset_image: Image
 
@@ -25,7 +45,9 @@ export class Tilemap implements IRenderable {
      * @param tile_height Tile Height
      * @param tilemap Tilemap Data
      */
-    constructor(tileset_image: Image, tile_width: number, tile_height: number, tilemap: number[][]) {
+    constructor(tileset_image: Image, tile_width: number, tile_height: number, tilemap: number[][], x: number = 0, y: number = 0) {
+        this.x = x
+        this.y = y
         this.tileset_image = tileset_image
         this.tile_width = tile_width
         this.tile_height = tile_height
@@ -51,7 +73,7 @@ export class Tilemap implements IRenderable {
             let current_column = this.tilemap[height_index]
             for (let width_index = 0; width_index < current_column.length; width_index++) {
                 let current = current_column[width_index]
-                love.graphics.draw(this.tileset_image, this.tileset[current], width_index * this.tile_width, height_index * this.tile_height)
+                love.graphics.draw(this.tileset_image, this.tileset[current], this.x + width_index * this.tile_width, this.y + height_index * this.tile_height)
             }
         }
     }

@@ -1,13 +1,25 @@
 import {Image, Quad} from "love.graphics"
-import {IRenderable} from "../Renderable"
+import {IUiElement} from "../UiElement"
 
 /** Animation Class */
-export class Animation implements IRenderable {
+export class Animation implements IUiElement {
+    /** Position X-axis */
+    x: number
+
+    /** Position Y-axis */
+    y: number
+
+    /** Width */
+    readonly width: number
+
+    /** Height */
+    readonly height: number
+
     /** Image Object */
-    image_object: Image
+    readonly image_object: Image
 
     /** Animation Frames */
-    frames: Quad[] = []
+    readonly frames: Quad[] = []
 
     /** Frame Index */
     frame_index = 0
@@ -25,9 +37,13 @@ export class Animation implements IRenderable {
      * @param frame_height Frame Height
      * @param duration Animation Duration
      */
-    constructor(image: Image, frame_width: number, frame_height: number, duration: number) {
+    constructor(image: Image, frame_width: number, frame_height: number, duration: number, x: number = 0, y: number = 0) {
+        this.x = x
+        this.y = y
         this.image_object = image
         this.total_duration = duration
+        this.width = frame_width
+        this.height = frame_height
         let image_width = image.getWidth(),
             image_height = image.getHeight()
         let width_frames = Math.floor(image_width / frame_width),
@@ -56,6 +72,6 @@ export class Animation implements IRenderable {
 
     /** Draw Method, draw the animation */
     draw() {
-        love.graphics.draw(this.image_object, this.frames[this.frame_index])
+        love.graphics.draw(this.image_object, this.frames[this.frame_index], this.x, this.y)
     }
 }

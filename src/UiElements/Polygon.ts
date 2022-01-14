@@ -1,7 +1,37 @@
 import {DrawMode} from "love.graphics"
-import {IRenderable} from "../Renderable"
+import {IUiElement} from "../UiElement"
 
-export class Polygon implements IRenderable {
+export class Polygon implements IUiElement {
+    /** Position X-axis */
+    x: number
+
+    /** Position Y-axis */
+    y: number
+
+    /** Drawing Width */
+    get width() {
+        let max_x = 0
+        for (let index of this.points) {
+            let coordinate = this.points[index]
+            if (index % 2 > 0) {
+                max_x = Math.max(max_x, coordinate)
+            }
+        }
+        return max_x
+    }
+
+    /** Drawing Height */
+    get height() {
+        let max_y = 0
+        for (let index of this.points) {
+            let coordinate = this.points[index]
+            if (index % 2 == 0) {
+                max_y = Math.max(max_y, coordinate)
+            }
+        }
+        return max_y
+    }
+
     /** Drawing Mode */
     mode: DrawMode
 
@@ -22,7 +52,9 @@ export class Polygon implements IRenderable {
      * @param mode Drawing Mode
      * @param points Points Details, `[x1, y1, x2, y2, ...]`
      */
-    constructor(mode: DrawMode, points: number[]) {
+    constructor(mode: DrawMode, points: number[], x: number = 0, y: number = 0) {
+        this.x = x
+        this.y = y
         this.mode = mode
         this.points = points
     }
@@ -33,6 +65,7 @@ export class Polygon implements IRenderable {
     /** Draw Method, draw a polygon */
     draw() {
         love.graphics.push("all")
+        love.graphics.translate(this.x, this.y)
         if (this.mode == "fill") {
             love.graphics.setColor(this.color)
             let triangles = love.math.triangulate(this.points)

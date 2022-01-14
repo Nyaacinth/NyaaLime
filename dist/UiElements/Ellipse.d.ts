@@ -1,13 +1,17 @@
 import { DrawMode } from "love.graphics";
-import { IRenderable } from "../Renderable";
+import { IUiElement } from "../UiElement";
 /** Ellipse Class */
-export declare class Ellipse implements IRenderable {
-    /** Drawing Mode */
-    mode: DrawMode;
+export declare class Ellipse implements IUiElement {
+    /** Position X-axis */
+    x: number;
+    /** Position Y-axis */
+    y: number;
     /** Drawing Width */
     width: number;
     /** Drawing Height */
     height: number;
+    /** Drawing Mode */
+    mode: DrawMode;
     /** Ellipse Color */
     color: [r: number, g: number, b: number, a?: number];
     /** Border Thickness */
@@ -20,7 +24,7 @@ export declare class Ellipse implements IRenderable {
      * @param width Drawing Width
      * @param height Drawing Height
      */
-    constructor(mode: DrawMode, width: number, height: number);
+    constructor(mode: DrawMode, width: number, height: number, x?: number, y?: number);
     /** Update Method, no functional */
     update(): void;
     /** Draw Method, draw a ellipse */

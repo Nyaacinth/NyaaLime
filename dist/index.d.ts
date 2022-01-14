@@ -3,7 +3,6 @@ export * from "./ContentManager";
 export * from "./Director";
 export * from "./Input";
 export * from "./Renderable";
-export * from "./Renderables";
 export * from "./Scene";
 export * from "./Signal";
 export * from "./Sprite";

@@ -1,12 +1,16 @@
 import { DrawMode } from "love.graphics";
-import { IRenderable } from "../Renderable";
-export declare class Rectangle implements IRenderable {
-    /** Drawing Mode */
-    mode: DrawMode;
+import { IUiElement } from "../UiElement";
+export declare class Rectangle implements IUiElement {
+    /** Position X-axis */
+    x: number;
+    /** Position Y-axis */
+    y: number;
     /** Drawing Width */
     width: number;
     /** Drawing Height */
     height: number;
+    /** Drawing Mode */
+    mode: DrawMode;
     /** Round corner */
     roundness: number;
     /** Rectangle Color */
@@ -21,7 +25,7 @@ export declare class Rectangle implements IRenderable {
      * @param width Drawing Width
      * @param height Drawing Height
      */
-    constructor(mode: DrawMode, width: number, height: number);
+    constructor(mode: DrawMode, width: number, height: number, x?: number, y?: number);
     /** Update Method, no functional */
     update(): void;
     /** Draw Method, draw a rectangle */

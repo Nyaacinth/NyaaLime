@@ -1,7 +1,15 @@
 import { Image, Quad } from "love.graphics";
-import { IRenderable } from "../Renderable";
+import { IUiElement } from "../UiElement";
 /** Tilemap Class */
-export declare class Tilemap implements IRenderable {
+export declare class Tilemap implements IUiElement {
+    /** Position X-axis */
+    x: number;
+    /** Position Y-axis */
+    y: number;
+    /** Drawing Width */
+    get width(): number;
+    /** Drawing Height */
+    get height(): number;
     /** Tileset Image */
     tileset_image: Image;
     /** Tileset Quads */
@@ -19,7 +27,7 @@ export declare class Tilemap implements IRenderable {
      * @param tile_height Tile Height
      * @param tilemap Tilemap Data
      */
-    constructor(tileset_image: Image, tile_width: number, tile_height: number, tilemap: number[][]);
+    constructor(tileset_image: Image, tile_width: number, tile_height: number, tilemap: number[][], x?: number, y?: number);
     /** Update Method, no functional */
     update(): void;
     /** Draw Method, draw the tilemap */

@@ -4,10 +4,18 @@ local ____exports = {}
 ____exports.Ellipse = __TS__Class()
 local Ellipse = ____exports.Ellipse
 Ellipse.name = "Ellipse"
-function Ellipse.prototype.____constructor(self, mode, width, height)
+function Ellipse.prototype.____constructor(self, mode, width, height, x, y)
+    if x == nil then
+        x = 0
+    end
+    if y == nil then
+        y = 0
+    end
     self.color = {1, 1, 1}
     self.border_thickness = 0
     self.border_color = {1, 1, 1}
+    self.x = x
+    self.y = y
     self.mode = mode
     self.width = width
     self.height = height
@@ -20,8 +28,8 @@ function Ellipse.prototype.draw(self)
         love.graphics.setColor(self.color)
         love.graphics.ellipse(
             "fill",
-            0,
-            0,
+            self.x,
+            self.y,
             self.width,
             self.height
         )
@@ -30,8 +38,8 @@ function Ellipse.prototype.draw(self)
     love.graphics.setColor(self.border_color)
     love.graphics.ellipse(
         "line",
-        0,
-        0,
+        self.x,
+        self.y,
         self.width,
         self.height
     )
