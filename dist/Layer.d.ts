@@ -1,14 +1,14 @@
 import { IRenderable } from "./Renderable";
 export declare class Layer implements IRenderable {
-    /** Scene Children */
+    /** Layer Children */
     protected children: IRenderable[];
     /**
-     * Add child to the scene
+     * Add child to the layer
      * @param child Child to add
      */
     addChild(child: IRenderable): void;
     /**
-     * Remove child from the scene
+     * Remove child from the layer
      * @param child Child to remove
      */
     removeChild(child: IRenderable): void;

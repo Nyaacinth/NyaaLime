@@ -21,13 +21,13 @@ export class Rectangle implements IUiElement {
     roundness = 0
 
     /** Rectangle Color */
-    color: [r: number, g: number, b: number, a?: number] = [1, 1, 1]
+    color: [r: number, g: number, b: number, a?: number] = [0, 0, 0, 0]
 
     /** Border Thickness */
     border_thickness = 0
 
     /** Border Color */
-    border_color: [r: number, g: number, b: number, a?: number] = [1, 1, 1]
+    border_color: [r: number, g: number, b: number, a?: number] = [0, 0, 0, 0]
 
     /**
      * Rectangle Constructor

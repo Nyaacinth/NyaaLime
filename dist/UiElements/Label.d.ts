@@ -1,28 +1,21 @@
 import { ColouredText, Font } from "love.graphics";
 import { IUiElement } from "../UiElement";
-export declare class Label implements IUiElement {
-    /** Position X-axis */
-    x: number;
-    /** Position Y-axis */
-    y: number;
-    /** Width */
-    get width(): number;
-    /** Height */
-    get height(): number;
+import { Rectangle } from "./Rectangle";
+/** Label Class */
+export declare class Label extends Rectangle implements IUiElement {
     /** Text Content */
     text: string | ColouredText;
     /** Text Font */
     font: Font;
     /**
-     * Text Consturctor
+     * Label Constructor
      * @param text Text Content
-     * @param font Font Object
+     * @param font Text Font
+     * @param width Drawing Width
+     * @param height Drawing Height
      * @param x Position X-axis
      * @param y Position Y-axis
      */
-    constructor(text: string | ColouredText, font?: Font, x?: number, y?: number);
-    /** Update Method, no functional */
-    update(): void;
-    /** Draw Method, draw the text */
+    constructor(text: string | ColouredText, width: number, height: number, font?: Font, x?: number, y?: number);
     draw(): void;
 }

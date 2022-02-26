@@ -12,9 +12,9 @@ function Rectangle.prototype.____constructor(self, mode, width, height, x, y)
         y = 0
     end
     self.roundness = 0
-    self.color = {1, 1, 1}
+    self.color = {0, 0, 0, 0}
     self.border_thickness = 0
-    self.border_color = {1, 1, 1}
+    self.border_color = {0, 0, 0, 0}
     self.x = x
     self.y = y
     self.mode = mode
